@@ -7,5 +7,5 @@ fun main() {
     val f: (Double) -> Int = { a -> (a * 3).toInt() }
     val g: (Long) -> Double = { a -> a + 2.0 }
 
-    println(higherAndThen<Long, Double, Int>()(g)(f)(2))
+    check(higherAndThen<Long, Double, Int>()(g)(f)(2) == 5)
 }

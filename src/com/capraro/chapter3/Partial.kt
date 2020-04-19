@@ -19,6 +19,6 @@ fun main() {
     val partialFirst = partialA<Int, Double, Double>(2, f)
     val partialSecond = partialB<Int, Double, Double>(50.0, f)
 
-    assert(partialFirst(50.0) == partialSecond(2))
-    assert(swapArgs(f)(50.0)(2) == f(2)(50.0))
+    check(partialFirst(50.0) == partialSecond(2))
+    check(swapArgs(f)(50.0)(2) == f(2)(50.0))
 }

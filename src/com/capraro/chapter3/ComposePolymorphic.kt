@@ -7,5 +7,5 @@ fun main() {
     val f: (Double) -> Int = { a -> (a * 3).toInt() }
     val g: (Long) -> Double = { a -> a + 2.0 }
 
-    println(compose<Long, Double, Int>(f, g)(2))
+    check(compose(f, g)(2) == 12)
 }

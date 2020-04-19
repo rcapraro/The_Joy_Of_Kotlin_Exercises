@@ -10,5 +10,5 @@ fun main() {
     val square: IntUnaryOp = { it * it }
     val triple: IntUnaryOp = { it * 3 }
 
-    println(higherCompose(square)(triple)(2))
+    check(higherCompose(square)(triple)(2) == 36)
 }

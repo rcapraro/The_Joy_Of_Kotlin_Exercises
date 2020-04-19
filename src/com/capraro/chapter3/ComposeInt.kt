@@ -7,5 +7,5 @@ fun main() {
     fun square(n: Int): Int = n * n
     fun triple(n: Int): Int = n * 3
 
-    println(compose(::square, ::triple)(2))
+    check(compose(::square, ::triple)(2) == 36)
 }

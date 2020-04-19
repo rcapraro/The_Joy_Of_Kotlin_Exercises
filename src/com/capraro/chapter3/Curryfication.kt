@@ -26,5 +26,5 @@ fun main() {
 
     val curriedSum3 = curry(sum)(3)
 
-    println(curriedSum3(2))
+    check(curriedSum3(2) == 5)
 }

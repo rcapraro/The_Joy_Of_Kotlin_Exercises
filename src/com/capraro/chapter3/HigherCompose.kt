@@ -6,9 +6,9 @@ typealias IntUnaryOp = (Int) -> Int
 val higherCompose: (IntUnaryOp) -> (IntUnaryOp) -> IntUnaryOp =
     { x -> { y -> { z -> x(y(z)) } } }
 
-val square: IntUnaryOp = { it * it }
-val triple: IntUnaryOp = { it * 3 }
-
 fun main() {
+    val square: IntUnaryOp = { it * it }
+    val triple: IntUnaryOp = { it * 3 }
+
     println(higherCompose(square)(triple)(2))
 }

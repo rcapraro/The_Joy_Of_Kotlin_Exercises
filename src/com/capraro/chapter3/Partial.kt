@@ -8,7 +8,9 @@ fun <A, B, C> partialB(b: B, f: (A) -> (B) -> C): (A) -> C = { a: A -> f(a)(b) }
 
 fun main() {
     val f = { a: Int -> { b: Double -> a * (1 + b / 100) } }
-    val partial = partialA<Int, Double, Double>(2, f)
+    val partialFirst = partialA<Int, Double, Double>(2, f)
+    val partialSecond = partialB<Int, Double, Double>(50.0, f)
 
-    println(partial(50.0))
+    println(partialFirst(50.0))
+    println(partialSecond(2))
 }

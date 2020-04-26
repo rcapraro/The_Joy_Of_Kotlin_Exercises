@@ -36,11 +36,18 @@ fun <T> List<T>.tail(): List<T> =
     else
         this.drop(1)
 
+fun sum(list: List<Int>): Int {
+    tailrec fun sum_(list: List<Int>, acc: Int): Int = when {
+        list.isEmpty() -> acc
+        else -> sum_(list.tail(), acc + list.head())
+    }
+    return sum_(list, 0)
+}
 
 fun <T> makeString(list: List<T>, delim: String): String {
     tailrec fun makeString_(list: List<T>, acc: String): String = when {
         list.isEmpty() -> acc
-        acc.isEmpty() -> makeString_(list.tail(), "$acc$delim${list.head()}")
+        acc.isEmpty() -> makeString_(list.tail(), "${list.head()}")
         else -> makeString_(list.tail(), "$acc$delim${list.head()}")
     }
     return makeString_(list, "")
@@ -50,6 +57,6 @@ fun <T> makeString(list: List<T>, delim: String): String {
 fun main() {
     check(Factorial.factorial(4) == 24)
     check(fibonacci(46) == 2_971_215_073.toBigInteger())
-
-    println(makeString(listOf(1, 2, 3, 4, 5), "<"))
+    check(sum(listOf(1, 2, 3, 4, 5)) == 15)
+    check(makeString(listOf(1, 2, 3, 4, 5), "<") == "1<2<3<4<5")
 }

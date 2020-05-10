@@ -1,9 +1,7 @@
 package com.capraro.chapter3
 
-//Exercise 3.9
 fun <A, B, C, D> func(a: A, b: B, c: C, d: D): String = "$a, $b, $c, $d"
 
-//Exercise 3.10
 fun <A, B, C, D> curried(): (A) -> (B) -> (C) -> (D) -> String =
     { a: A ->
         { b: B ->

@@ -2,6 +2,12 @@ package com.capraro.chapter4
 
 import java.math.BigInteger
 
+fun prepend(c: Char, s: String): String = "$c$s"
+
+fun toStringRecursion(list: List<Char>): String =
+    if (list.isEmpty()) ""
+    else prepend(list.head(), toStringRecursion(list.tail()))
+
 object Factorial {
     val factorial: (Int) -> Int by lazy {
         { n: Int ->
@@ -24,37 +30,25 @@ fun fibonacci(n: Int): BigInteger {
     return go(BigInteger.ZERO, BigInteger.ONE, n.toBigInteger())
 }
 
-fun <T> List<T>.head(): T =
-    if (this.isEmpty())
-        throw IllegalArgumentException("head called on empty list")
-    else
-        this[0]
-
-fun <T> List<T>.tail(): List<T> =
-    if (this.isEmpty())
-        throw IllegalArgumentException("tail called on empty list")
-    else
-        this.drop(1)
-
 fun sum(list: List<Int>): Int {
-    tailrec fun sum_(list: List<Int>, acc: Int): Int = when {
+    tailrec fun sum(list: List<Int>, acc: Int): Int = when {
         list.isEmpty() -> acc
-        else -> sum_(list.tail(), acc + list.head())
+        else -> sum(list.tail(), acc + list.head())
     }
-    return sum_(list, 0)
+    return sum(list, 0)
 }
 
 fun <T> makeString(list: List<T>, delim: String): String {
-    tailrec fun makeString_(list: List<T>, acc: String): String = when {
+    tailrec fun makeString(list: List<T>, acc: String): String = when {
         list.isEmpty() -> acc
-        acc.isEmpty() -> makeString_(list.tail(), "${list.head()}")
-        else -> makeString_(list.tail(), "$acc$delim${list.head()}")
+        acc.isEmpty() -> makeString(list.tail(), "${list.head()}")
+        else -> makeString(list.tail(), "$acc$delim${list.head()}")
     }
-    return makeString_(list, "")
+    return makeString(list, "")
 }
 
-
 fun main() {
+    check(toStringRecursion(listOf('h', 'e', 'l', 'l', 'o')) == "hello")
     check(Factorial.factorial(4) == 24)
     check(fibonacci(46) == 2_971_215_073.toBigInteger())
     check(sum(listOf(1, 2, 3, 4, 5)) == 15)

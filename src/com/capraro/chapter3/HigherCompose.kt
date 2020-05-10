@@ -1,6 +1,5 @@
 package com.capraro.chapter3
 
-//Exercise 3.4
 typealias IntUnaryOp = (Int) -> Int
 
 val higherCompose: (IntUnaryOp) -> (IntUnaryOp) -> IntUnaryOp =

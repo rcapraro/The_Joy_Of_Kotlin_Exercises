@@ -1,6 +1,5 @@
 package com.capraro.chapter3
 
-//Exercise 3.3
 typealias IntBinOp = (Int) -> (Int) -> Int
 
 val add: IntBinOp = { a -> { b -> a + b } }

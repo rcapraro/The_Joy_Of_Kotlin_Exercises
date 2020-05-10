@@ -1,6 +1,5 @@
 package com.capraro.chapter3
 
-//Exercise 3.1
 fun compose(f: (Int) -> Int, g: (Int) -> Int): (Int) -> Int = { f(g(it)) }
 
 fun main() {

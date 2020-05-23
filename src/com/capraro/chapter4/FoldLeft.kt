@@ -19,8 +19,13 @@ fun <T> makeStringFoldLeft(list: List<T>, delim: String): String = foldLeft(list
     }
 }
 
+fun <T> prepend(list: List<T>, elem: T): List<T> = foldLeft(list, listOf(elem)) { lst, elm -> lst + elm }
+
+fun <T> reverse(list: List<T>): List<T> = foldLeft(list, listOf(), ::prepend)
+
 fun main() {
     check(sumFoldLeft(listOf(1, 2, 3)) == 6)
     check(stringFoldLeft(listOf('h', 'e', 'l', 'l', 'o')) == "hello")
     check(makeStringFoldLeft(listOf(1, 2, 3, 4, 5), "<") == "1<2<3<4<5")
+    check(reverse(listOf('h', 'e', 'l', 'l', 'o')) == listOf('o', 'l', 'l', 'e', 'h'))
 }

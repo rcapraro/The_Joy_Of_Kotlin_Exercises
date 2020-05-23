@@ -22,12 +22,12 @@ object Factorial {
 - f (n) = f (n – 1) + f (n – 2)
  */
 fun fibonacci(n: Int): BigInteger {
-    tailrec fun go(val1: BigInteger, val2: BigInteger, x: BigInteger): BigInteger = when {
+    tailrec fun fibonacci(val1: BigInteger, val2: BigInteger, x: BigInteger): BigInteger = when {
         (x == BigInteger.ZERO) -> BigInteger.ONE
         (x == BigInteger.ONE) -> val1 + val2
-        else -> go(val2, val1 + val2, x - BigInteger.ONE)
+        else -> fibonacci(val2, val1 + val2, x - BigInteger.ONE)
     }
-    return go(BigInteger.ZERO, BigInteger.ONE, n.toBigInteger())
+    return fibonacci(BigInteger.ZERO, BigInteger.ONE, n.toBigInteger())
 }
 
 fun sum(list: List<Int>): Int {

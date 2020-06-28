@@ -90,11 +90,18 @@ sealed class List<out A> {
                 is Cons -> reverse(acc.cons(list.head), list.tail)
             }
 
-        fun sum(ints: List<Int>): Int =
-            when (ints) {
-                Nil -> 0
-                is Cons -> ints.head + sum(ints.tail)
+
+        private fun <A, B> foldRight(list: List<A>, identity: B, f: (A) -> (B) -> B): B =
+            when (list) {
+                Nil -> identity
+                is Cons -> f(list.head)(foldRight(list.tail, identity, f))
             }
+
+        fun sum(list: List<Int>): Int =
+            foldRight(list, 0) { x -> { y -> x + y } }
+
+        fun product(list: List<Double>): Double =
+            foldRight(list, 1.0) { x -> { y -> x * y } }
     }
 }
 
@@ -103,4 +110,5 @@ fun main() {
     check(list.reverse() == List('d', 'c', 'b', 'a'))
     check(list.init() == List('a', 'b', 'c'))
     check(List.sum(List(1, 2, 3, 4)) == 10)
+    check(List.product(List(2.0, 3.0, 4.0)) == 24.0)
 }

@@ -1,5 +1,11 @@
 package com.capraro.chapter4
 
+/*
+    (0) <- (1, 2, 3)
+    (0 + 1) <- (2, 3)
+    (0 + 1 + 2) <- (3)
+    (0 + 1 + 2 + 3) <- ()
+*/
 fun <T, U> foldLeft(list: List<T>, seed: U, f: (U, T) -> U): U {
     tailrec fun foldLeft(list: List<T>, acc: U): U = when {
         list.isEmpty() -> acc

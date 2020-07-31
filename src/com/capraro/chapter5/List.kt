@@ -25,9 +25,9 @@ sealed class List<out A> {
 
     fun init(): List<A> = this.reverse().drop(1).reverse()
 
-    private fun <B> foldRight(identity: B, f: (A) -> (B) -> B): B = foldRight(this, identity, f)
+    fun <B> foldRight(identity: B, f: (A) -> (B) -> B): B = foldRight(this, identity, f)
 
-    private fun <B> foldLeft(identity: B, f: (B) -> (A) -> B): B = foldLeft(identity, this, f)
+    fun <B> foldLeft(identity: B, f: (B) -> (A) -> B): B = foldLeft(identity, this, f)
 
     private fun <A, B> foldRight(list: List<A>, identity: B, f: (A) -> (B) -> B): B =
         when (list) {
